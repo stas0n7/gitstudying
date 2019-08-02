@@ -4,16 +4,16 @@ puts "Укажите длинну второй стороны треуголни
 stb = gets
 puts "Укажите длинну третьей стороны треуголника"
 stc = gets
-if sta.to_i > stb.to_i && sta.to_i > stc.to_i && sta.to_i**2 == stb.to_i**2 + stc.to_i**2
+if sta.to_f > stb.to_f && sta.to_f > stc.to_f && sta.to_f**2 == stb.to_f**2 + stc.to_f**2
     puts "Треугольник прямоуголный"
-elsif sta.to_i > stb.to_i && sta.to_i > stc.to_i && sta.to_i**2 != stb.to_i**2 + stc.to_i**2
+elsif sta.to_f > stb.to_f && sta.to_f > stc.to_f && sta.to_f**2 != stb.to_f**2 + stc.to_f**2
     puts "Треугоник не прямоугольный"
-elsif stb.to_i > sta.to_i && stb.to_i > stc.to_i && stb.to_i**2 == sta.to_i**2 + stc.to_i**2
+elsif stb.to_f > sta.to_f && stb.to_f > stc.to_f && stb.to_f**2 == sta.to_f**2 + stc.to_f**2
     puts "Треуголник прямоугольный"
-elsif stb.to_i > sta.to_i && stb.to_i > stc.to_i && stb.to_i**2 != sta.to_i**2 + stc.to_i**2
+elsif stb.to_f > sta.to_f && stb.to_f > stc.to_f && stb.to_f**2 != sta.to_f**2 + stc.to_f**2
     puts "Треугольник не прямоугольный"
-elsif stc.to_i > sta.to_i && stc.to_i > stb.to_i && stc.to_i**2 == sta.to_i**2 + stb.to_i**2
+elsif stc.to_f > sta.to_f && stc.to_f > stb.to_f && stc.to_f**2 == sta.to_f**2 + stb.to_f**2
     puts "Треуголник прямоугольный"
-elsif stc.to_i > sta.to_i && stc.to_i > stb.to_i && stc.to_i**2 != sta.to_i**2 + stb.to_i**2
+elsif stc.to_f > sta.to_f && stc.to_f > stb.to_f && stc.to_f**2 != sta.to_f**2 + stb.to_f**2
     puts "Треугольник не прямоугольный"
 end
