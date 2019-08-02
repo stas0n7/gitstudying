@@ -1,9 +1,9 @@
 puts "Укажите длинну первой стороны треуголника"
-sta = gets.chomp
+sta = gets
 puts "Укажите длинну второй стороны треуголника"
-stb = gets.chomp
+stb = gets
 puts "Укажите длинну третьей стороны треуголника"
-stc = gets.chomp
+stc = gets
 if sta.to_f >= stb.to_f && sta.to_f >= stc.to_f && sta.to_f**2 == stb.to_f**2 + stc.to_f**2
     puts "Треугольник прямоугольный"
 elsif sta.to_f >= stb.to_f && sta.to_f >= stc.to_f && sta.to_f**2 != stb.to_f**2 + stc.to_f**2
