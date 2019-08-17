@@ -13,9 +13,8 @@ else
 end
 days_count = 0
 index = 0
-while index < month
+while index < month - 1
   days_count += months[index]
   index += 1
 end
-day_of_year = days_count - months[index - 1]
-puts "#{day_of_year + day} day"
+puts "#{days_count + day} day"
