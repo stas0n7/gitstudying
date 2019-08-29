@@ -15,26 +15,22 @@ class Train
   end
 
   def route_go
-    i = 1
+    i = 0
     if @route.empty?
       puts "Route is not found. At first took the route"
     else
-      puts "Station #{@route[0]} - first station of the route "
-      puts "Next station #{@route[1]}"
-      while @route.size > i
+      puts "Next station #{@route[i]} - first station of the route "
+      puts "Station #{@route[i]}"
+      puts "Next station #{@route[i + 1]}"
+      puts "-----------------"
+      until i == (@route.size - 2)
+        puts "Station #{@route[i + 1]}"
+        puts "Previous station  #{@route[i]}"
+        puts "Next station #{@route[i + 2]}"
         puts "-----------------"
-        puts "Station #{@route[i]}"
-        puts "Previous station  #{@route[i - 1]}"
-        if @route[i + 1] == @route.last
-          puts "Next station #{@route[i + 1]} - last"
-          puts "-----------------"
-          puts "Station #{@route[i + 1]} - last"
-          abort
-        else
-          puts "Next station #{@route[i + 1]}"
-        end
         i += 1
       end
+      puts "Station #{@route.last} , last station of the route"
     end
   end
 
