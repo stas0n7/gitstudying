@@ -1,5 +1,6 @@
 class Train
   attr_accessor :speed
+  attr_reader :train_type, :carriages
 
   def initialize(train_type, carriages, speed = 0)
     @train_type = train_type
@@ -35,7 +36,7 @@ class Train
   end
 
   def station=(name)
-    @station << name.station_name
+    @station << name.name
   end
 
   def station_leave=(name)
@@ -44,14 +45,6 @@ class Train
 
   def station
     puts "Train on the station #{@station}"
-  end
-
-  def type
-    @train_type
-  end
-
-  def carriages
-    @carriages
   end
 
   def minus_carriage
@@ -78,33 +71,31 @@ class Train
 end
 
 class Station
+  attr_reader :name
+
   def initialize(name)
-    @station_name = name
+    @name = name
     @train_list = []
     @pas = 0
     @cargo = 0
   end
 
-  def station_name
-    @station_name
-  end
-
   def take(train)
-    puts "On the station #{@station_name} arrived #{train.type} train , with #{train.carriages} carriages"
-    @train_list << train.type
-    if train.type == "pas"
+    puts "On the station #{@name} arrived #{train.train_type} train , with #{train.carriages} carriages"
+    @train_list << train.train_type
+    if train.train_type == "pas"
       @pas += 1
-    elsif train.type == "cargo"
+    elsif train.train_type == "cargo"
       @cargo += 1
     end
   end
 
   def take_off(train)
-    puts "From station#{@station_name} departed #{train.type} train , with #{train.carriages} carriages"
-    @train_list.delete(train.type)
-    if train.type == "pas"
+    puts "From station#{@name} departed #{train.train_type} train , with #{train.carriages} carriages"
+    @train_list.delete(train.train_type)
+    if train.train_type == "pas"
       @pas -= 1
-    elsif train.type == "cargo"
+    elsif train.train_type == "cargo"
       @cargo -= 1
     end
   end
@@ -123,20 +114,18 @@ class Station
 end
 
 class Route
+  attr_reader :route_stations
+
   def initialize(route_stations = [])
     @route_stations = route_stations
   end
 
   def station_add(name)
-    @route_stations << name.station_name
+    @route_stations << name.name
   end
 
   def station_del(name)
     @route_stations.delete(name)
-  end
-
-  def route_stations
-    @route_stations
   end
 end
 
