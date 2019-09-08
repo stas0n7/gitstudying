@@ -1,17 +1,17 @@
 class Train
   attr_accessor :speed
-  attr_reader :train_type, :carriages
+  attr_reader :type, :carriages
 
-  def initialize(train_type, carriages, speed = 0)
-    @train_type = train_type
+  def initialize(type, carriages, speed = 0)
+    @type = type
     @carriages = carriages
     @speed = speed
     @station = []
     @route = []
   end
 
-  def route_take(name)
-    name.route_stations.each { |x| @route << x }
+  def route_take(route)
+    route.stations.each { |x| @route << x }
     puts "A train took a route #{@route}"
   end
 
@@ -35,11 +35,11 @@ class Train
     end
   end
 
-  def station=(name)
-    @station << name.name
+  def station=(station)
+    @station << station.name
   end
 
-  def station_leave=(name)
+  def station_leave=(station)
     @station.shift
   end
 
@@ -81,51 +81,51 @@ class Station
   end
 
   def take(train)
-    puts "On the station #{@name} arrived #{train.train_type} train , with #{train.carriages} carriages"
-    @train_list << train.train_type
-    if train.train_type == "pas"
+    puts "On the station #{@name} arrived #{train.type} train , with #{train.carriages} carriages"
+    @train_list << train
+    if train.type == "pas"
       @pas += 1
-    elsif train.train_type == "cargo"
+    elsif train.type == "cargo"
       @cargo += 1
     end
   end
 
   def take_off(train)
-    puts "From station#{@name} departed #{train.train_type} train , with #{train.carriages} carriages"
-    @train_list.delete(train.train_type)
-    if train.train_type == "pas"
+    puts "From station#{@name} departed #{train.type} train , with #{train.carriages} carriages"
+    @train_list.delete(train.type)
+    if train.type == "pas"
       @pas -= 1
-    elsif train.train_type == "cargo"
+    elsif train.type == "cargo"
       @cargo -= 1
     end
   end
 
   def list_type
     puts "passenger trains - #{@pas} :"
-    @train_list.find_all { |i| i == "pas" }.each { |x| puts x }
+    @train_list.find_all { |train| train.type == "pas" }.each { |train| puts train.type }
     puts "Cargo trains #{@cargo} :"
-    @train_list.find_all { |i| i == "cargo" }.each { |x| puts x }
+    @train_list.find_all { |train| train.type == "cargo" }.each { |train| puts train.type }
   end
 
   def list
     puts "On the station now :"
-    @train_list.each { |i| puts i }
+    @train_list.each { |train| puts train.type }
   end
 end
 
 class Route
-  attr_reader :route_stations
+  attr_reader :stations
 
-  def initialize(route_stations = [])
-    @route_stations = route_stations
+  def initialize(stations = [])
+    @stations = stations
   end
 
-  def station_add(name)
-    @route_stations << name.name
+  def station_add(station)
+    @stations << station.name
   end
 
-  def station_del(name)
-    @route_stations.delete(name)
+  def station_del(station)
+    @stations.delete(station)
   end
 end
 
