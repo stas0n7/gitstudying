@@ -1,5 +1,7 @@
+require_relative "train"
 require_relative "train_pas"
 require_relative "train_cargo"
+require_relative "carriage"
 require_relative "carriage_pas"
 require_relative "carriage_cargo"
 require_relative "station"
@@ -8,23 +10,14 @@ require_relative "route"
 train1 = TrainPas.new
 train2 = TrainCargo.new
 
-carriage1 = CarriagePas.new
-carriage2 = CarriagePas.new
-carriage3 = CarriagePas.new
+train1.plus_carriage
+train1.plus_carriage
+train1.plus_carriage
 
-carriage_cargo1 = CarriageCargo.new
-carriage_cargo2 = CarriageCargo.new
-carriage_cargo3 = CarriageCargo.new
-carriage_cargo4 = CarriageCargo.new
-
-train1.plus_carriage carriage1
-train1.plus_carriage carriage2
-train1.plus_carriage carriage3
-
-train2.plus_carriage carriage_cargo1
-train2.plus_carriage carriage_cargo2
-train2.plus_carriage carriage_cargo3
-train2.plus_carriage carriage_cargo4
+train2.plus_carriage
+train2.plus_carriage
+train2.plus_carriage
+train2.plus_carriage
 
 station1 = Station.new("kharkov")
 station2 = Station.new("moskva")

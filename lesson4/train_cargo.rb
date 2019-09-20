@@ -1,6 +1,6 @@
-class TrainCargo < TrainPas
+class TrainCargo < Train
   def initialize
     super
-    @type = "cargo"
+    @type = :cargo
   end
 end

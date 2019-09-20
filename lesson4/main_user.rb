@@ -1,5 +1,8 @@
+
+require_relative "train"
 require_relative "train_pas"
 require_relative "train_cargo"
+require_relative "carriage"
 require_relative "carriage_pas"
 require_relative "carriage_cargo"
 require_relative "station"

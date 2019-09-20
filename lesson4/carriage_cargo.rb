@@ -1,6 +1,5 @@
-class CarriageCargo < CarriagePas
+class CarriageCargo < Carriage
   def initialize
-    super
-    @type = "cargo"
+    @type = :cargo
   end
 end

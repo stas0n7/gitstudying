@@ -1,15 +1,5 @@
-class CarriagePas
-  attr_reader :type
-  attr_reader :train
-
+class CarriagePas < Carriage
   def initialize
-    @type = "pas"
-    @train = []
-  end
-
-  def take(train)
-    if train.type == @type
-      @train << train
-    end
+    @type = :pas
   end
 end
