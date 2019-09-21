@@ -11,22 +11,24 @@ module InstanceCounter
   end
 
   module ForClass
+    @@objects = 0
+
     def instances
-      ObjectSpace.each_object(self).count
-    end
-  end
-
-  module ForInstance
-    @@instances = 0
-
-    def count_instances
-      @@instances
+      @@objects
     end
 
     private
 
+    def plus_object
+      @@objects += 1
+    end
+  end
+
+  module ForInstance
+    private
+
     def register_instance
-      @@instances += 1
+      self.class.send :plus_object
     end
   end
 end
