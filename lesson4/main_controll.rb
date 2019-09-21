@@ -42,7 +42,7 @@ class Controller
 
   def create_station
     puts "Type 'name' of station"
-    station = gets.chomp.to_s
+    name = gets.chomp.to_s
     @stations << Station.new(name)
     sleep 1
     puts "Station '#{name}' created"
