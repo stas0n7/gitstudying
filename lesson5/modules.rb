@@ -5,26 +5,23 @@ end
 
 #task 4
 module InstanceCounter
-  def self.included(clas)
-    clas.extend ForClass
-    clas.send :include, ForInstance
+  def self.included(base)
+    base.extend ClassMethods
+    base.send :include, InstanceMethods
   end
 
-  module ForClass
-    @@objects = 0
-
-    def instances
-      @@objects
-    end
+  module ClassMethods
+    attr_reader :instances_count
 
     private
 
     def plus_object
-      @@objects += 1
+      @instances_count ||= 0
+      @instances_count += 1
     end
   end
 
-  module ForInstance
+  module InstanceMethods
     private
 
     def register_instance
