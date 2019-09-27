@@ -7,8 +7,8 @@ class Station
     @pas = 0
     @cargo = 0
     validate!
-  rescue RuntimeError
-    puts "NAME ERROR!! less then 3 symbol"
+  rescue ArgumentError => e
+    puts e.inspect
   end
 
   def valid?
@@ -66,7 +66,7 @@ class Station
   private
 
   def validate!
-    raise "Station name can't be less then 3 symbols" if @name.length < 3
+    raise ArgumentError, "Station name can't be less then 3 symbols" if @name.length < 3
     true
   end
 end

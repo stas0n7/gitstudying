@@ -14,8 +14,8 @@ class Train
     @number = number
     begin
       validate!
-    rescue RuntimeError
-      puts "Error! invalid number format"
+    rescue ArgumentError => e
+      puts e.inspect
     end
     number_unique
     @@instances << self
@@ -114,11 +114,11 @@ class Train
   protected
 
   def number_unique
-    raise "Error! This number already used" if @@instances.find { |train| train.number == number }
+    raise ArgumentError, "Error! This number already used" if @@instances.find { |train| train.number == number }
   end
 
   def validate!
-    raise "number has invalid format" if @number !~ NUMBER_FORMAT
+    raise ArgumentError, "number has invalid format" if @number !~ NUMBER_FORMAT
     true
   end
 end

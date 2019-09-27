@@ -6,7 +6,7 @@ class Route
   end
 
   def station_add(station)
-    raise "Error ! argument should be Station class" if station.class != Station
+    raise ArgumentError, "Error ! argument should be Station class" if station.class != Station
     @stations << station.name
   end
 
