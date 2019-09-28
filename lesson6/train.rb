@@ -12,11 +12,10 @@ class Train
     @station = []
     @route = []
     @number = number
-    begin
-      validate!
-    rescue ArgumentError => e
-      puts e.inspect
-    end
+    validate!
+  rescue ArgumentError => e
+    puts e.inspect
+  ensure
     number_unique
     @@instances << self
   end
@@ -95,9 +94,9 @@ class Train
       puts "First you need stop the train"
     elsif carriage.type != @type
       begin
-        raise "wrong carriage type"
-      rescue RuntimeError
-        puts "Error , incorrect carriage type"
+        raise ArgumentError, "Incorrect carriage type"
+      rescue ArgumentError => e
+        puts e.inspect
       end
     elsif @carriages.include? carriage
       puts "HEY !! This carriage already hooked to this train!!"
@@ -114,11 +113,11 @@ class Train
   protected
 
   def number_unique
-    raise ArgumentError, "Error! This number already used" if @@instances.find { |train| train.number == number }
+    raise ArgumentError, "This number already used" if @@instances.find { |train| train.number == number }
   end
 
   def validate!
-    raise ArgumentError, "number has invalid format" if @number !~ NUMBER_FORMAT
+    raise ArgumentError, "Number has invalid format" if @number !~ NUMBER_FORMAT
     true
   end
 end
