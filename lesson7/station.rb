@@ -1,4 +1,6 @@
 class Station
+  include Valid
+
   attr_reader :name
 
   def initialize(name)
@@ -16,7 +18,7 @@ class Station
     if @train_list.empty?
       puts "No trains on the station"
     elsif block_given?
-      for train in @train_list
+      @train_list.each do |train|
         block.call(train)
       end
     else
@@ -25,12 +27,6 @@ class Station
   end
 
   #block_method { |x| puts "#{x} I am train on the station" }
-
-  def valid?
-    validate!
-  rescue
-    false
-  end
 
   def self.all
     ObjectSpace.each_object(self) { |station| puts station.name }

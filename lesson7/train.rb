@@ -1,5 +1,7 @@
 class Train
-  #include Manufacturer
+  include Valid
+
+  # include Manufacturer
   attr_accessor :speed
   attr_reader :type, :carriages_count, :station, :number
   NUMBER_FORMAT = /^([a-z]{3}|\d{3})-?([a-z]{2}|\d{2})$/i
@@ -16,7 +18,7 @@ class Train
   rescue ArgumentError => e
     puts e.inspect
   ensure
-    number_unique
+    check_number_uniqueness
     @@instances << self
   end
 
@@ -25,7 +27,7 @@ class Train
     if @carriages.empty?
       puts "No carriages"
     elsif block_given?
-      for carriage in @carriages
+      @carriages.each do |carriage|
         block.call(carriage)
       end
     else
@@ -34,12 +36,6 @@ class Train
   end
 
   #block_method { |x| puts "#{x} I am carriage from block" }
-
-  def valid?
-    validate!
-  rescue
-    false
-  end
 
   def self.find(integer)
     ObjectSpace.each_object(self).to_a.find { |train| train.number == integer }
@@ -127,7 +123,7 @@ class Train
 
   protected
 
-  def number_unique
+  def check_number_uniqueness
     raise ArgumentError, "This number already used" if @@instances.find { |train| train.number == number }
   end
 
